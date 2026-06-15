@@ -11,33 +11,77 @@
  */
 
 :root {
-  /* colors */
-  --background-color: white;
+  /* ============================================================
+   * DUOPA brand palette (sourced from live-site SVG assets
+   * and screenshot — verified June 2026).
+   *
+   * Brand navy  : #004778  (all three feature icons + ISI bar)
+   * Brand orange: #F26B21  (clock hand, arrow, pills icon fill)
+   * ============================================================ */
+
+  /* brand primitives — never use these directly in component CSS;
+     reference the semantic aliases below */
+  --color-brand-navy:     #004778;
+  --color-brand-navy-mid: #23417b; /* AbbVie gradient mid stop — use sparingly */
+  --color-brand-navy-deep:#071d49; /* AbbVie gradient end stop — use sparingly */
+  --color-brand-orange:   #f26b21;
+  --color-brand-orange-dark: #c0510c; /* ~20 % darker, for hover states */
+
+  /* semantic colors — mapped onto EDS boilerplate variable names */
+  --background-color: #fff;
   --light-color: #f8f8f8;
-  --dark-color: #505050;
+  --dark-color: var(--color-brand-navy);    /* replaces #505050 — DUOPA navy */
   --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* link/CTA — DUOPA orange for primary CTAs, navy for inline links */
+  --link-color: var(--color-brand-navy);
+  --link-hover-color: var(--color-brand-orange);
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* additional semantic aliases required by blocks */
+  --color-navy-bg: var(--color-brand-navy);     /* dark section / ISI header bg */
+  --color-navy-text: #fff;                       /* text on navy backgrounds */
+  --color-navy-link: #a8d4f5;                    /* inline links inside navy sections */
+  --color-navy-link-hover: #cce5ff;              /* hover state of navy-section links */
+  --color-accent: var(--color-brand-orange);     /* primary CTA fill */
+  --color-accent-hover: var(--color-brand-orange-dark); /* CTA hover */
+  --color-accent-focus: var(--color-brand-orange); /* focus-visible ring colour */
+  --color-focus-ring: var(--color-brand-orange); /* universal 3px focus outline */
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* fonts — DUOPA uses Muli (Google Fonts) for all text */
+  --body-font-family: muli, 'Mulish', muli-fallback, sans-serif;
+  --heading-font-family: muli, 'Mulish', muli-fallback, sans-serif;
+
+  /* body sizes (mobile-first) */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
+
+  /* heading sizes (mobile-first) */
+  --heading-font-size-xxl: 48px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 28px;
+  --heading-font-size-m: 22px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
+
+  /* spacing scale */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 40px;
+  --spacing-xl: 60px;
+  --spacing-xxl: 80px;
+
+  /* layout */
+  --max-width-content: 1200px;
 
   /* nav height */
   --nav-height: 64px;
+
+  /* motion */
+  --transition-speed: 0.15s;
+  --transition-easing: ease;
 }
 
 /* fallback fonts */
@@ -55,18 +99,18 @@
 
 @media (width >= 900px) {
   :root {
-    /* body sizes */
+    /* body sizes — desktop: same as mobile-first values above */
     --body-font-size-m: 18px;
     --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
 
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
+    /* heading sizes — desktop: tighten the upper end */
+    --heading-font-size-xxl: 52px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 30px;
+    --heading-font-size-m: 24px;
     --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
 
@@ -166,48 +210,122 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link,
-button {
-  box-sizing: border-box;
-  display: inline-block;
-  max-width: 100%;
+p.button-wrapper {
   margin: 12px 0;
+}
+
+a.button:any-link,
+button.button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin: 0;
   border: 2px solid transparent;
   border-radius: 2.4em;
   padding: 0.5em 1.2em;
-  font-family: var(--body-font-family);
-  font-style: normal;
+  font: inherit;
   font-weight: 500;
   line-height: 1.25;
-  text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-a.button:hover,
-a.button:focus,
-button:hover,
-button:focus {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
+a.button[aria-disabled="true"],
+button.button:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
-button:disabled,
-button:disabled:hover {
+a.button.primary,
+button.button.primary {
+  border-color: var(--text-color);
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+a.button.primary:hover,
+a.button.primary:focus-visible,
+button.button.primary:hover,
+button.button.primary:focus-visible {
+  border-color: var(--dark-color);
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+a.button.primary[aria-disabled="true"],
+a.button.primary[aria-disabled="true"]:hover,
+a.button.primary[aria-disabled="true"]:focus-visible,
+button.button.primary:disabled,
+button.button.primary:disabled:hover,
+button.button.primary:disabled:focus-visible {
   background-color: var(--light-color);
-  cursor: unset;
+  border-color: var(--light-color);
+  color: var(--dark-color);
 }
 
 a.button.secondary,
-button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
+button.button.secondary {
+  border-color: var(--text-color);
+  background-color: transparent;
   color: var(--text-color);
+}
+
+a.button.secondary:hover,
+a.button.secondary:focus-visible,
+button.button.secondary:hover,
+button.button.secondary:focus-visible {
+  border-color: var(--dark-color);
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+a.button.secondary[aria-disabled="true"],
+a.button.secondary[aria-disabled="true"]:hover,
+a.button.secondary[aria-disabled="true"]:focus-visible,
+button.button.secondary:disabled,
+button.button.secondary:disabled:hover,
+button.button.secondary:disabled:focus-visible {
+  background-color: var(--light-color);
+  border-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+/* high-impact call-to-action — DUOPA orange primary CTA */
+a.button.accent,
+button.button.accent {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--background-color);
+}
+
+a.button.accent:hover,
+a.button.accent:focus-visible,
+button.button.accent:hover,
+button.button.accent:focus-visible {
+  border-color: var(--color-accent-hover);
+  background-color: var(--color-accent-hover);
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+a.button.accent[aria-disabled="true"],
+a.button.accent[aria-disabled="true"]:hover,
+a.button.accent[aria-disabled="true"]:focus-visible,
+button.button.accent:disabled,
+button.button.accent:disabled:hover,
+button.button.accent:disabled:focus-visible {
+  background-color: var(--light-color);
+  border-color: var(--light-color);
+  color: var(--dark-color);
 }
 
 main img {
@@ -254,4 +372,28 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+main .section.dark {
+  background-color: var(--color-navy-bg);
+  color: var(--color-navy-text);
+  margin: 0;
+  padding: var(--spacing-l) 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: var(--color-navy-text);
+}
+
+main .section.dark a:any-link {
+  color: var(--color-navy-link);
+}
+
+main .section.dark a:hover {
+  color: var(--color-navy-link-hover);
 }

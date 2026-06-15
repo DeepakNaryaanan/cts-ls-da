@@ -1,0 +1,3 @@
+/* Section-metadata is a configuration-only block: its JS reads the Style row,
+ * applies the value as a class on the parent section, then removes itself.
+ * This file exists so loadBlock() does not 404 fetching the stylesheet. */

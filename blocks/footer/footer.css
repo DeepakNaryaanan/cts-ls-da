@@ -1,20 +1,104 @@
+/* ============================================================
+ * DUOPA footer — navy background, two link rows, legal text
+ * ============================================================ */
+
+/* stylelint-disable no-descending-specificity */
+
 footer {
-  background-color: var(--light-color);
+  background-color: var(--color-navy-bg);
+  color: var(--color-navy-text);
   font-size: var(--body-font-size-xs);
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  /* extra bottom space so content clears the fixed, collapsed ISI bar (~48px) */
+  padding: 40px 24px 72px;
 }
 
-footer .footer p {
+footer .footer a:any-link {
+  color: var(--color-navy-text);
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  color: var(--color-navy-link);
+  text-decoration: underline;
+}
+
+footer .footer ul {
+  list-style: none;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 0;
+}
+
+footer .footer ul > li {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+/* vertical separators between items */
+footer .footer ul > li:not(:last-child) {
+  border-right: 1px solid rgb(255 255 255 / 35%);
+}
+
+/* secondary row sits below a divider, slightly lighter weight */
+footer .footer-nav-sub {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgb(255 255 255 / 25%);
+}
+
+footer .footer-nav-sub ul > li {
+  font-weight: 400;
+  text-transform: none;
+}
+
+/* legal text */
+footer .footer-legal {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(255 255 255 / 25%);
+  line-height: 1.5;
+}
+
+footer .footer-legal p {
+  margin: 0 0 12px;
+  color: rgb(255 255 255 / 85%);
+}
+
+footer .footer-legal a:any-link {
+  text-decoration: underline;
+}
+
+/* AbbVie logo */
+footer .footer-logo {
+  margin-top: 16px;
+  text-align: right;
+}
+
+footer .footer-abbvie-logo {
+  display: inline-block;
+}
+
+footer .footer-abbvie-logo svg {
+  width: 110px;
+  height: auto;
+  fill: #fff;
 }
 
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer {
+    padding: 48px 32px 32px;
   }
 }

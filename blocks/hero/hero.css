@@ -5,23 +5,18 @@
 
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  display: flex;
+  align-items: center;
+  min-height: 360px;
+  padding: 0;
+  overflow: hidden;
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
+/* background image */
 .hero picture {
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
 }
 
 .hero img {
@@ -30,8 +25,60 @@
   height: 100%;
 }
 
+/* readability scrim — darken the left where the text sits */
+.hero::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(7 29 73 / 78%) 0%,
+    rgb(7 29 73 / 55%) 40%,
+    rgb(7 29 73 / 10%) 70%,
+    rgb(7 29 73 / 0%) 100%
+  );
+}
+
+/* content block — left aligned, constrained to the content width */
+.hero > div {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.hero > div > div {
+  max-width: 560px;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: var(--heading-font-size-xxl);
+  line-height: 1.1;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 35%);
+}
+
+.hero p {
+  margin: 0;
+  color: #fff;
+  font-size: var(--heading-font-size-m);
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 35%);
+}
+
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    min-height: 480px;
+  }
+
+  .hero > div {
+    padding: 56px 32px;
+  }
+
+  .hero > div > div {
+    max-width: 620px;
   }
 }

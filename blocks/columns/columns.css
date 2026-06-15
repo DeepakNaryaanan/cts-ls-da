@@ -31,3 +31,27 @@
     order: unset;
   }
 }
+
+/* icons variant — small centered icons above heading/text (not full-width images) */
+.columns.icons > div > div {
+  text-align: center;
+}
+
+.columns.icons picture {
+  display: block;
+  margin: 0 auto var(--spacing-s);
+  text-align: center;
+}
+
+.columns.icons picture img {
+  width: auto;
+  max-width: 100%;
+  max-height: 96px;
+  margin: 0 auto;
+}
+
+@media (width >= 900px) {
+  .columns.icons > div {
+    align-items: flex-start;
+  }
+}

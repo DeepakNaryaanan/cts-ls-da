@@ -1,0 +1,160 @@
+/* ISI block — sticky Important Safety Information footer */
+
+/* Remove default section margin/padding when ISI is present */
+.isi-container {
+  margin: 0;
+  padding: 0;
+}
+
+.isi-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #fff;
+  border-top: 3px solid var(--color-navy-bg);
+  box-shadow: 0 -2px 8px rgb(0 0 0 / 15%);
+  max-height: 48px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.isi-sticky.isi-expanded {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+/* Header bar */
+.isi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  background-color: var(--color-navy-bg);
+  color: var(--color-navy-text);
+  cursor: pointer;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.isi-label {
+  font-weight: 700;
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+/* Toggle button */
+.isi-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 2.4em;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  padding: 4px 14px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.isi-toggle:hover,
+.isi-toggle:focus-visible {
+  background-color: #fff;
+  color: var(--color-navy-bg);
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Expand/collapse chevron icon */
+.isi-toggle-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-top: -3px;
+}
+
+.isi-expanded .isi-toggle-icon {
+  transform: rotate(-135deg);
+  margin-top: 3px;
+}
+
+/* Content area */
+.isi-content {
+  padding: 24px;
+  background-color: #fff;
+  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
+}
+
+.isi-content[aria-hidden='true'] {
+  visibility: hidden;
+}
+
+.isi-content[aria-hidden='false'] {
+  visibility: visible;
+}
+
+.isi-content h3 {
+  font-size: var(--body-font-size-m);
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+  color: var(--color-brand-navy);
+}
+
+.isi-content ul,
+.isi-content ol {
+  padding-left: 1.5em;
+}
+
+.isi-content li {
+  margin-bottom: 0.4em;
+}
+
+.isi-content a:any-link {
+  color: var(--link-color);
+}
+
+/* Add bottom padding to <main> so sticky bar doesn't obscure page content */
+main {
+  padding-bottom: 60px;
+}
+
+@media (width >= 600px) {
+  .isi-label {
+    font-size: var(--body-font-size-s);
+  }
+
+  .isi-toggle {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .isi-header {
+    padding: 12px 48px;
+  }
+
+  .isi-content {
+    padding: 32px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: var(--body-font-size-s);
+  }
+
+  .isi-sticky.isi-expanded {
+    max-height: 60vh;
+  }
+}

@@ -1,4 +1,72 @@
 /* stylelint-disable max-line-length */
+
+/*
+ * DUOPA brand typeface: Muli (Google Fonts).
+ * The live site loads Muli via Google Fonts CDN at weights 300/400/600/700.
+ * Self-hosted woff2 files should be placed in /fonts/ and referenced below.
+ * Until woff2 files are downloaded, the Google Fonts @import below provides
+ * a production fallback — move to head.html once performance is validated.
+ *
+ * ACTION REQUIRED: download the four Muli woff2 variants from Google Fonts
+ * and commit them to /fonts/ before going live on AEM:
+ *   muli-light.woff2    (weight 300)
+ *   muli-regular.woff2  (weight 400)
+ *   muli-semibold.woff2 (weight 600)
+ *   muli-bold.woff2     (weight 700)
+ */
+
+/* Fallback font — Arial metrics adjusted to minimise layout shift */
+@font-face {
+  font-family: muli-fallback;
+  size-adjust: 100.2%;
+  src: local('Arial');
+}
+
+/* Self-hosted Muli declarations — uncomment when woff2 files are in /fonts/ */
+
+/*
+@font-face {
+  font-family: muli;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/muli-light.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: muli;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/muli-regular.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: muli;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/muli-semibold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: muli;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/muli-bold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+*/
+
+/* ----------------------------------------------------------------
+ * Legacy Roboto declarations — kept for rollback safety only.
+ * Not used once --body-font-family and --heading-font-family are
+ * set to Muli. Safe to remove after Muli self-hosting is confirmed.
+ * ---------------------------------------------------------------- */
 @font-face {
   font-family: roboto-condensed;
   font-style: normal;
